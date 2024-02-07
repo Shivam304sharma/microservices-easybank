@@ -1,0 +1,16 @@
+spring:
+  config:
+    activate:
+      on-profile: "prod"
+
+build:
+  version: "1.0"
+
+accounts:
+  message: "Welcome to EazyBank accounts related PROD APIs "
+  contactDetails:
+    name: "Shivam Sharma - Product Owner"
+    email: "shivam007mrt@gmail.com"
+  onCallSupport:
+    - 8445620377
+    - 9368005699
