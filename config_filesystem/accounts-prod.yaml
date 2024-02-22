@@ -9,7 +9,7 @@ accounts:
   message: "Welcome to EazyBank accounts related PROD APIs "
   contactDetails:
     name: "Shivam Sharma - Product Owner"
-    email: "shivam007mrt@gmail.com"
+    email: "{cipher}4b181f67025a3f8385f7174027f98ae8c531a084265bd73d22308c41c165ddf82d3d2aae808cb6904f754a8ef201a956"
   onCallSupport:
     - 8445620377
     - 9368005699
