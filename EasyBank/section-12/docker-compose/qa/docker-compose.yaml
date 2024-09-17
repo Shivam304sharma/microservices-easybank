@@ -44,7 +44,7 @@ services:
       service: microservice-db-config
 
   configserver:
-    image: "shivamdixit07/configserver:s11"
+    image: "shivamdixit07/configserver:s12"
     container_name: configserver-ms
     ports:
       - "8071:8071"
@@ -59,7 +59,7 @@ services:
       service: microservice-base-config
 
   eurekaserver:
-    image: "shivamdixit07/eurekaserver:s11"
+    image: "shivamdixit07/eurekaserver:s12"
     container_name: eurekaserver-ms
     ports:
       - "8070:8070"
@@ -76,7 +76,7 @@ services:
       SPRING_APPLICATION_NAME: "eurekaserver"
 
   accounts:
-    image: "shivamdixit07/accounts:s11"
+    image: "shivamdixit07/accounts:s12"
     container_name: accounts-ms
     ports:
       - "8080:8080"
@@ -97,7 +97,7 @@ services:
       service: microservice-eureka-config
 
   loans:
-    image: "shivamdixit07/loans:s11"
+    image: "shivamdixit07/loans:s12"
     container_name: loans-ms
     ports:
       - "8090:8090"
@@ -118,7 +118,7 @@ services:
       service: microservice-eureka-config
 
   cards:
-    image: "shivamdixit07/cards:s11"
+    image: "shivamdixit07/cards:s12"
     container_name: cards-ms
     ports:
       - "9000:9000"
@@ -140,7 +140,7 @@ services:
 
 
   gatewayserver:
-    image: "shivamdixit07/gatewayserver:s11"
+    image: "shivamdixit07/gatewayserver:s12"
     container_name: gatewayserver-ms
     ports:
       - "8072:8072"

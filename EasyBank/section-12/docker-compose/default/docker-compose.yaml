@@ -1,6 +1,18 @@
 version: '3.7'
 
 services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:25.0.2
+    container_name: keycloak
+    ports:
+      - "7080:8080"
+    environment:
+      KEYCLOAK_ADMIN: "admin"
+      KEYCLOAK_ADMIN_PASSWORD: "admin"
+    command: "start-dev"
+    extends:
+      file: common-config.yml
+      service: network-deploy-service
   redis:
     image: redis
     ports:
@@ -44,7 +56,7 @@ services:
       service: microservice-db-config
 
   configserver:
-    image: "shivamdixit07/configserver:s11"
+    image: "shivamdixit07/configserver:s12"
     container_name: configserver-ms
     ports:
       - "8071:8071"
@@ -59,7 +71,7 @@ services:
       service: microservice-base-config
 
   eurekaserver:
-    image: "shivamdixit07/eurekaserver:s11"
+    image: "shivamdixit07/eurekaserver:s12"
     container_name: eurekaserver-ms
     ports:
       - "8070:8070"
@@ -76,10 +88,8 @@ services:
       SPRING_APPLICATION_NAME: "eurekaserver"
 
   accounts:
-    image: "shivamdixit07/accounts:s11"
+    image: "shivamdixit07/accounts:s12"
     container_name: accounts-ms
-    ports:
-      - "8080:8080"
     healthcheck:
       test: "curl --fail --silent localhost:8080/actuator/health/readiness | grep UP || exit 1"
       interval: 10s
@@ -97,10 +107,8 @@ services:
       service: microservice-eureka-config
 
   loans:
-    image: "shivamdixit07/loans:s11"
+    image: "shivamdixit07/loans:s12"
     container_name: loans-ms
-    ports:
-      - "8090:8090"
     healthcheck:
       test: "curl --fail --silent localhost:8090/actuator/health/readiness | grep UP || exit 1"
       interval: 10s
@@ -118,10 +126,8 @@ services:
       service: microservice-eureka-config
 
   cards:
-    image: "shivamdixit07/cards:s11"
+    image: "shivamdixit07/cards:s12"
     container_name: cards-ms
-    ports:
-      - "9000:9000"
     healthcheck:
       test: "curl --fail --silent localhost:9000/actuator/health/readiness | grep UP || exit 1"
       interval: 10s
@@ -140,7 +146,7 @@ services:
 
 
   gatewayserver:
-    image: "shivamdixit07/gatewayserver:s11"
+    image: "shivamdixit07/gatewayserver:s12"
     container_name: gatewayserver-ms
     ports:
       - "8072:8072"
@@ -150,6 +156,7 @@ services:
       SPRING_DATA_REDIS_HOST: redis
       SPRING_DATA_REDIS_PORT: 6379
       SPRING_DATA_REDIS_TIMEOUT: 1s
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK-SET-URI: "http://keycloak:8080/realms/master/protocol/openid-connect/certs"
     depends_on:
       accounts:
         condition: service_healthy
